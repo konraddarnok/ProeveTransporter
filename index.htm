@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Lastbiler</title>
+  <link rel="stylesheet" type="text/css" href="bundle.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <h1 class="h1">Dine Lastbiler</h1>
+ 
+  <div id="app">
+    <h2 class="h3">Liste af Lastbiler</h2>
+    <button v-on:click="getAllTransporters" class="btn btn-primary">Hent</button>
+    <ul v-if="transporters.length">
+      <li v-for="transporter in transporters">
+       <h5 class="h5">Lastbil:</h5> <p class="text-primary">Navn {{transporter.lastbil}} </p>
+       <p>Chauffor {{transporter.chauffor}}</p> 
+     <p>Dato: {{transporter.dato}} </p>
+       <p>Antal Km {{transporter.antalKm}} </p>
+       <p>Gennemsnit {{transporter.gennemsnit}} </p>
+      </li>
+
+    </ul>
+
+
+  </div>
+    
+  <script src="bundle.js"></script>
+</body>
+</html>
