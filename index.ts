@@ -21,7 +21,10 @@ new Vue({
     data: {
             transporters: [],
             formData: { lastbil: "", chauffor: "", dato: 0, antalKm: 0, gennemsnit: 0},
-
+            deleteId: 0,
+            deleteMessage: "",
+            addMessage:""
+,
     },
     methods: {
         getAllTransporters(){
@@ -32,6 +35,25 @@ new Vue({
             .catch((error: AxiosError) => {
                 alert(error.message)
             }) 
+        },
+        deleteTransporter(deleteId: number){
+            let uri: string = baseUri + "/" + deleteId
+            axios.delete<void>(uri)
+            .then((reponse: AxiosResponse<void>) => {
+                this.deleteMessage = reponse.status + " " + reponse.statusText
+                this.getAllTransporters()
+            })
+            .catch((error: AxiosError) => {
+                alert(error.message)
+            })
+        },
+        addTransporter(){
+            axios.post<ITransporter>(baseUri, this.formData)
+            .then((response: AxiosResponse) => {
+                let message: string = "Din Transporter er tilføjet"
+                this.addMessage = message 
+                this.getAllTransporters()
+            })
         }
     }
 
