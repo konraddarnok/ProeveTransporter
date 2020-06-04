@@ -16,15 +16,28 @@
     <button v-on:click="getAllTransporters" class="btn btn-primary">Hent</button>
     <ul v-if="transporters.length">
       <li v-for="transporter in transporters">
-       <h5 class="h5">Lastbil:</h5> <p class="text-primary">Navn {{transporter.lastbil}} </p>
-       <p>Chauffor {{transporter.chauffor}}</p> 
+       <h5 class="h5">Lastbil:</h5> <p class="text-primary">Navn: {{transporter.lastbil}} </p>
+       <p>Chauffor: {{transporter.chauffor}}</p> 
      <p>Dato: {{transporter.dato}} </p>
-       <p>Antal Km {{transporter.antalKm}} </p>
-       <p>Gennemsnit {{transporter.gennemsnit}} </p>
+       <p>Antal Km: {{transporter.antalKm}} </p>
+       <p>Gennemsnit: {{transporter.gennemsnit}} </p>
       </li>
-
     </ul>
 
+    <h2 class="h2 text-danger">Fjern Lastbil</h2>
+    <input class="form-control" v-model.number="deleteId" placeholder="Id på lastbil" type="number"/>
+    <button v-on:click="deleteTransporter(deleteId)" class="btn btn-warning">Delete</button>
+    <p class="text-succes">{{deleteMessage}}</p>
+
+
+    <h2 class="h2">Tilføj Transporter</h2>
+    <input v-model="formData.lastbil" placeholder="navn på lastbil" type="text" />
+    <input v-model="formData.chauffor" placeholder="navn på chauffor" type="text" />
+    <input v-model.number="formData.dato" placeholder="indtast dato" type="number" />
+    <input v-model.number="formData.antalKm" placeholder="antal km" type="number" />
+    <input v-model.number="formData.gennemsnit" placeholder="gennemsnit" type="number" />
+    <button v-on:click="addTransporter" class="btn btn-success">Tilføj</button>
+    <div>{{addMessage}}</div>
 
   </div>
     
